@@ -39,7 +39,7 @@ let mapleader = " "
 nnoremap <leader>r :Cargo run<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
-
+"hehe herezja
 noremap ; l
 noremap l k
 noremap k j
