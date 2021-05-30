@@ -29,35 +29,37 @@ Plug 'mbbill/undotree'
 Plug 'preservim/nerdcommenter'
 Plug 'vim-latex/vim-latex'
 call plug#end()
-
+"themes
 colorscheme gruvbox
 let g:airline_theme='angr'
 hi Normal guibg=NONE ctermbg=NONE
-
+"leader
 let mapleader = " "
-
-nnoremap <leader>r :Cargo run<CR>
+"sizing
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
+
 "hehe herezja
 noremap ; l
 noremap l k
 noremap k j
 noremap j h
 
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-highlight Normal guibg=none
-hi Normal guibg=NONE ctermbg=NONE
-
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-nnoremap <leader>h :wincmd h<CR>
-
-nnoremap <leader>j :wincmd j<CR>
-nnoremap <leader>k :wincmd k<CR>
-nnoremap <leader>l :wincmd l<CR>
+"moving between the windows
+nnoremap <leader>j :wincmd h<CR>
+nnoremap <leader>k :wincmd j<CR>
+nnoremap <leader>l :wincmd k<CR>
+nnoremap <leader>; :wincmd l<CR>
+"undotree
 nnoremap <leader>u :UndotreeShow<CR>
+"nerd tree
 nnoremap <leader>n :NERDTreeToggle<bar><bar> :vertical resize 20<CR>
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 nnoremap <leader>ps :Rg<SPACE>
 
 nnoremap <leader>jp :call CocAction('jumpDefinition')
+
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+
+nnoremap <leader>r :Cargo run<CR>
