@@ -17,7 +17,8 @@ set signcolumn=yes
 set colorcolumn=80
 
 call plug#begin('~/.vim/plugged')
-
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'preservim/nerdtree'
@@ -30,6 +31,7 @@ Plug 'vim-latex/vim-latex'
 call plug#end()
 
 colorscheme gruvbox
+let g:airline_theme='angr'
 hi Normal guibg=NONE ctermbg=NONE
 
 let mapleader = " "
@@ -37,6 +39,11 @@ let mapleader = " "
 nnoremap <leader>r :Cargo run<CR>
 nnoremap <Leader>+ :vertical resize +5<CR>
 nnoremap <Leader>- :vertical resize -5<CR>
+
+noremap ; l
+noremap l k
+noremap k j
+noremap j h
 
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 highlight Normal guibg=none
