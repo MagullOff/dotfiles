@@ -1,0 +1,9 @@
+terminator
+data 
+brave discord
+nvim
+spotify
+p3x onenote
+rust
+node
+vs-code
