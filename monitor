@@ -1,6 +1,6 @@
 #!/bin/sh
 monitor="SINGLE MONITOR 😗\nTWO MONITORS 😎😀\nDUPLICATE MONITORS 👽👽\nROTATED MONITOR 👽🙃"
-chosen=$(echo -e $monitor | dmenu -i -l 7 -h 15 -fn Monospace-18)
+chosen=$(echo -e $monitor | dmenu -i -l 7 -h 15 -fn Monospace-14 -sb "#d3869b" -sf "#504945" -nb "#504945" -nf "#fbf1c7")
 if [ "${chosen:0:1}" == "S" ]; then 
   xrandr --output HDMI2 --off && xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal 
 elif [ "${chosen:0:1}" == "D" ]; then 
