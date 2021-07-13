@@ -1,12 +1,16 @@
 #!/bin/sh
-
-chosen=$(grep -v "#" ~/.monitors | dmenu -i -l 7 -h 15 -fn Monospace-18)
+monitor="SINGLE MONITOR 😗\nTWO MONITORS 😎😀\nDUPLICATE MONITORS 👽👽\nROTATED MONITOR 👽🙃"
+chosen=$(echo -e $monitor | dmenu -i -l 7 -h 15 -fn Monospace-18)
 if [ "${chosen:0:1}" == "S" ]; then 
-  xrandr --output HDMI2 --off && xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal && notify-send "Single monitor setup"
+  xrandr --output HDMI2 --off && xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal 
 elif [ "${chosen:0:1}" == "D" ]; then 
-  xrandr --output HDMI2 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output eDP1 --auto --same-as eDP1 && notify-send "Duplicated monitor setup" && ./.config/polybar/launch.sh
+  xrandr --output HDMI2 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output eDP1 --auto --same-as eDP1
 elif [ "${chosen:0:1}" == "R" ]; then 
-  xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output HDMI2 --rotate right && notify-send "Rotated monitor setup" && ./.config/polybar/launch.sh
+  xrandr --output eDP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output HDMI2 --rotate right
+elif [ "${chosen:0:1}" == "T" ]; then 
+  xrandr --output HDMI2 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output eDP1 --auto --left-of HDMI2
 else
-  xrandr --output HDMI2 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output eDP1 --auto --left-of HDMI2 && notify-send "Double monitor setup" && ./.config/polybar/launch.sh
+    notify-send "Wrong setup!"
 fi
+notify-send $chosen
+./.config/polybar/launch.sh
