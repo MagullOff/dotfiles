@@ -1,0 +1,14 @@
+#!/bin/sh
+xclip -h >/dev/null || exit
+
+chosen=$(grep -v "#" ~/.emoji | dmenu -i -l 20 -h 27 -fn Monospace-14 -sb "#d3869b" -sf "#504945" -nb "#504945" -nf "#fbf1c7")
+
+[ "$chosen" != "" ] || exit
+
+c=$(echo "$chosen" | sed "s/ .*//")
+echo "$c" | tr -d '\n' | xclip -selection clipboard
+pgrep -x dunst >/dev/null && notify-send "'$c' copied to clipboard."
+
+s=$(echo "$chosen" | sed "s/.*; //" | awk '{print $1}')
+echo "$s" | tr -d '\n' | xclip
+pgrep -x dunst >/dev/null && notify-send "'$s' copied to primary."
