@@ -79,12 +79,14 @@ endfunction
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-
-nnoremap <leader>r :Cargo run<CR> 
-
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 nnoremap <leader>w :set wrap!<CR>
 
-map <leader>O :! mdpdf %<CR><CR>
-map <leader>OO :! mupdf $(echo % \| sed  's/md$/pdf/') & disown<CR><CR>
+map <leader>O :! pandoc % -s -o $(echo % \| sed  's/md$/pdf/') && killall mupdf & mupdf $(echo % \| sed  's/tex$/pdf/') & disown<CR><CR>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
