@@ -1,16 +1,16 @@
 #!/bin/sh
 monitor="LAPTOP 😗\nHOME 😎😀\nDUPLICATE 👽👽\nROTATED 👽🙃"
 chosen=$(echo -e $monitor | dmenu -i -l 7 -h 15 -fn Monospace-14 -sb "#d3869b" -sf "#504945" -nb "#504945" -nf "#fbf1c7")
-if [ "${chosen:0:1}" == "S" ]; then 
+if [ "${chosen:0:1}" == "L" ]; then 
   xrandr --output HDMI-2 --off && xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal 
 elif [ "${chosen:0:1}" == "D" ]; then 
   xrandr --output HDMI-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output eDP-1 --auto --same-as eDP-1
 elif [ "${chosen:0:1}" == "R" ]; then 
   xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output HDMI-2 --rotate right
-elif [ "${chosen:0:1}" == "T" ]; then 
+elif [ "${chosen:0:1}" == "H" ]; then 
   xrandr --output HDMI-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output eDP-1 --auto --left-of HDMI-2
 else
-    notify-send "Wrong setup!"
+  xrandr --output HDMI-2 --off && xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal 
 fi
 notify-send $chosen
 ./.config/polybar/launch.sh
