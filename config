@@ -33,7 +33,7 @@ bindsym $mod+Return exec terminator
 bindsym $mod+q kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id dmenu_run -h 27
+bindsym $mod+d exec --no-startup-id ~/.config/polybar/blocks/scripts/launcher.sh &
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -42,8 +42,8 @@ bindsym $mod+z exec --no-startup-id morc_menu
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-#exec --no-startup-id volumeicon
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+##exec --no-startup-id volumeicon
+##bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 exec --no-startup-id start-pulseaudio-x11
 exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
@@ -138,14 +138,14 @@ bindsym $mod+Ctrl+Right workspace next
 bindsym $mod+Ctrl+Left workspace prev
 
 # Workspace names
-set $ws1 1:Code 
-set $ws2 2:Browser 
-set $ws3 3:Disc
-set $ws4 4:Gimp
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
 set $ws5 5
 set $ws6 6
 set $ws7 7
-set $ws8 8:Spotify
+set $ws8 8
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -231,22 +231,23 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+bindsym $mod+0 exec --no-startup-id ~/.config/polybar/blocks/scripts/powermenu.sh &
 # Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+#bindsym $mod+0 mode "$mode_system"
+#set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+#mode "$mode_system" {
+    #bindsym l exec --no-startup-id i3exit lock, mode "default"
+    #bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    #bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    #bindsym e exec --no-startup-id i3exit logout, mode "default"
+    #bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    #bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    #bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
+    ## exit system mode: "Enter" or "Escape"
+    #bindsym Return mode "default"
+    #bindsym Escape mode "default"
+#}
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -278,12 +279,12 @@ exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
-exec terminator
-exec brave
 exec --no-startup-id xautolock -time 10 -locker blurlock
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
 exec monitor
+exec terminator
+exec brave
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
