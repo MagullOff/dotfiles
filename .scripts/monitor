@@ -8,9 +8,9 @@ elif [ "${chosen:0:1}" == "D" ]; then
 elif [ "${chosen:0:1}" == "R" ]; then 
   xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output HDMI-2 --rotate right
 elif [ "${chosen:0:1}" == "H" ]; then 
-  xrandr --output HDMI-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output eDP-1 --auto --left-of HDMI-2
+  xrandr --output HDMI-2 --primary --mode 1920x1080 --pos 0x0 --rotate normal && xrandr --output eDP-1 --auto --right-of HDMI-2
 else
   xrandr --output HDMI-2 --off && xrandr --output eDP-1 --primary --mode 1920x1080 --pos 0x0 --rotate normal 
 fi
 notify-send $chosen
-./.config/polybar/launch.sh
+./.config/polybar/blocks/launch.sh
